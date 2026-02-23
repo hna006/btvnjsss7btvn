@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>function printTeamRoster(playerIds, playerPositions) {
+  console.log("Đội bóng hiện tại (" + playerIds.length + " cầu thủ):");
+  for (let i = 0; i < playerIds.length; i++) {
+    let posName = "";
+    if (playerPositions[i] === 1) posName = "Thủ môn";
+    else if (playerPositions[i] === 2) posName = "Hậu vệ";
+    else if (playerPositions[i] === 3) posName = "Tiền vệ";
+    else if (playerPositions[i] === 4) posName = "Tiền đạo";
+    console.log((i + 1) + ". " + playerIds[i] + " - " + posName);
+  }
+}
+
+function findPlayersByPosition(playerPositions, position) {
+  let indices = [];
+  for (let i = 0; i < playerPositions.length; i++) {
+    if (playerPositions[i] === position) {
+      indices.push(i);
+    }
+  }
+  return indices;
+}
+
+let playerIds = [];
+let playerPositions = [];
+
+let n = parseInt(prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng?"));
+for (let i = 0; i < n; i++) {
+  let id = prompt("Mã cầu thủ:");
+  let pos = parseInt(prompt("Vị trí (1: Thủ môn 2: Hậu vệ 3: Tiền vệ 4: Tiền đạo):"));
+  playerIds.push(id);
+  playerPositions.push(pos);
+}
+
+printTeamRoster(playerIds, playerPositions);
+
+let posCheck = parseInt(prompt("Nhập vị trí cầu thủ muốn đếm số lượng (1: Thủ môn, 2: Hậu vệ, 3: Tiền vệ, 4: Tiền đạo):"));
+let found = findPlayersByPosition(playerPositions, posCheck);
+
+let posName = "";
+if (posCheck === 1) posName = "Thủ môn";
+else if (posCheck === 2) posName = "Hậu vệ";
+else if (posCheck === 3) posName = "Tiền vệ";
+else if (posCheck === 4) posName = "Tiền đạo";
+
+console.log("Số cầu thủ ở vị trí " + posName + ": " + found.length);
+console.log("Các chỉ số cầu thủ ở vị trí " + posName + ": " + found.map(i => i + 1).join(", "));</script>
+</body>
+</html>

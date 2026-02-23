@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>function getAllPositions(players) {
+  let positions = [];
+  for (let i = 0; i < players.length; i++) {
+    let parts = players[i].split("-");
+    let pos = parts[2];
+    if (!positions.includes(pos)) {
+      positions.push(pos);
+    }
+  }
+  return positions;
+}
+
+function findPlayersWithLongestName(players) {
+  let longest = "";
+  for (let i = 0; i < players.length; i++) {
+    let parts = players[i].split("-");
+    let name = parts[1];
+    if (name.length > longest.length) {
+      longest = name;
+    }
+  }
+  return longest;
+}
+
+function countPlayersStartingWithLetter(players, letter) {
+  let count = 0;
+  let lowerLetter = letter.toLowerCase();
+  for (let i = 0; i < players.length; i++) {
+    let parts = players[i].split("-");
+    let name = parts[1];
+    if (name[0].toLowerCase() === lowerLetter) {
+      count++;
+    }
+  }
+  return count;
+}
+
+let players = [
+  "P001-Nguyễn Văn A-Thủ môn",
+  "P002-Trần Thị B-Hậu vệ",
+  "P003-Lê Văn C-Hậu vệ",
+  "P004-Phạm Văn D-Tiền vệ",
+  "P005-Hoàng Thị E-Tiền đạo",
+  "P006-Vũ Minh F-Tiền đạo",
+  "P007-Đặng Văn G-Thủ môn"
+];
+
+console.log("Các vị trí trong đội:", getAllPositions(players));
+console.log("Cầu thủ có tên dài nhất:", findPlayersWithLongestName(players));
+console.log("Số cầu thủ có tên bắt đầu bằng chữ 'N':", countPlayersStartingWithLetter(players, "N"));</script>
+</body>
+</html>

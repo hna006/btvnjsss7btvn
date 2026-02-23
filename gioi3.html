@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>function printTeamRoster(players) {
+  console.log("Danh sách cầu thủ:");
+  for (let i = 0; i < players.length; i++) {
+    let parts = players[i].split("-");
+    console.log((i + 1) + ". " + parts[0] + " - " + parts[1] + " - " + parts[2]);
+  }
+}
+
+function pushPlayer(players, id, name, position) {
+  let posName = "";
+  if (position === 1) posName = "Thủ môn";
+  else if (position === 2) posName = "Hậu vệ";
+  else if (position === 3) posName = "Tiền vệ";
+  else if (position === 4) posName = "Tiền đạo";
+  players.push(id + "-" + name + "-" + posName);
+}
+
+let players = [];
+let n = parseInt(prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng?"));
+
+for (let i = 0; i < n; i++) {
+  let id;
+  while (true) {
+    id = prompt("Nhập mã cầu thủ (ví dụ: P001):");
+    let exists = false;
+    for (let j = 0; j < players.length; j++) {
+      if (players[j].startsWith(id + "-")) {
+        exists = true;
+        break;
+      }
+    }
+    if (!exists) break;
+    console.log("Mã cầu thủ đã tồn tại, nhập lại!");
+  }
+  let name;
+  while (true) {
+    name = prompt("Nhập tên cầu thủ:");
+    if (name.trim() !== "") break;
+    console.log("Tên không được để trống, nhập lại!");
+  }
+  let pos = parseInt(prompt("Nhập vị trí (1: Thủ môn, 2: Hậu vệ, 3: Tiền vệ, 4: Tiền đạo):"));
+  pushPlayer(players, id, name, pos);
+}
+
+printTeamRoster(players);</script>
+</body>
+</html>
